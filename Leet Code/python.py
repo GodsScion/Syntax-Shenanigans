@@ -572,6 +572,29 @@ class Solution:
 
 
 ####### SLIDING WINDOW #######
+# 3. Longest Substring Without Repeating Characters (https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) - Medium - 2026-11-09 - 13m 32s
+class Solution:
+    '''
+    Time Complexity: O(n)
+    Space Complexity: O(min(n, m))
+    Where n is the length of s and m is the size of the character set. Each character enters and leaves the window once.
+    Pitfalls: first attempt set l = r on a repeat, which drops the characters between the two copies ("dvdf" gave 2, not 3).
+    The earlier copy of c needs no pop: window[c] = r overwrites it.
+    '''
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        window = dict()
+        out = 0
+        l = 0
+        for r,c in enumerate(s):
+            if c in window:
+                for i in range(l,window[c]):
+                    window.pop(s[i])
+                l = window[c]+1
+            out = max(out, r-l+1)
+            window[c] = r
+        return out
+
+
 
 # 567. Permutation in String (https://leetcode.com/problems/permutation-in-string/description/) - Medium
 class Solution:
