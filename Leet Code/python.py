@@ -95,6 +95,19 @@ class Solution:
         for i,num in enumerate(nums):
             if target - num in visited: return [i,visited[target-num]]
             visited[num] = i
+# 1. Two Sum (https://leetcode.com/problems/two-sum/description/) - Easy - 2026-11-09 - 2m 54s [one-pass-hash]
+class Solution:
+    '''
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    '''
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        prev = dict()
+        for i,n in enumerate(nums):
+            if target - n in prev:
+                return [i, prev[target-n]]
+            prev[n] = i
+        return None
 
 
 # 49. Group Anagrams (https://leetcode.com/problems/group-anagrams/description/) - Medium [sorted-key]
