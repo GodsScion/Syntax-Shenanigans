@@ -885,6 +885,28 @@ class Solution:
         return -1
 
 
+# 704. Binary Search (https://leetcode.com/problems/binary-search/) - Easy - 2026-11-09 - 5m 17s
+class Solution:
+    '''
+    Time Complexity: O(log n)
+    Space Complexity: O(1)
+    Half-open window [l, r): r starts at len(nums), loop while l < r, and r = m when nums[m] is too big.
+    Pitfalls: first attempt mixed r = len(nums) with l <= r, which indexes past the end when target is bigger than every number.
+    '''
+    def search(self, nums: list[int], target: int) -> int:
+        # Assuming that there are no duplicates 
+        l,r = 0,len(nums)
+        while l < r:
+            m = (l + r)//2
+            if nums[m] == target:
+                return m
+            if nums[m] > target:
+                r = m
+            else:
+                l = m+1
+        return -1
+
+
 # 74. Search a 2D Matrix (https://leetcode.com/problems/search-a-2d-matrix/description/) - Medium
 class Solution:
     '''
