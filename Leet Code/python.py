@@ -121,6 +121,22 @@ class Solution:
             else:
                 hashMap[key].append(word)
         return hashMap.values()
+# 49. Group Anagrams (https://leetcode.com/problems/group-anagrams/description/) - Medium - 2026-11-09 - 4m 2s [sorted-key]
+class Solution:
+    '''
+    Time Complexity: O(n·k log k)
+    Space Complexity: O(n·k)
+    Where n is the number of words and k is the longest word.
+    '''
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+        anagrams = dict()
+        for word in strs:
+            key = "".join(sorted(list(word)))
+            if key in anagrams:
+                anagrams[key].append(word)
+            else:
+                anagrams[key] = [word]
+        return list(anagrams.values())
 # 49. Group Anagrams (https://leetcode.com/problems/group-anagrams/description/) - Medium [char-count]
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
