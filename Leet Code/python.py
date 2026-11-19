@@ -572,7 +572,22 @@ class Solution:
 
 
 ####### SLIDING WINDOW #######
-# 3. Longest Substring Without Repeating Characters (https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) - Medium - 2026-11-09 - 13m 32s
+# 3. Longest Substring Without Repeating Characters (https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) - Medium - 2026-11-18 - 7m 15s [pop-window]
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        prev = dict()
+        l, out = 0, 0
+        for i, c in enumerate(s):
+            if c in prev:
+                for x in range(l, prev[c]):
+                    prev.pop(s[x])
+                l = prev[c] + 1
+            prev[c] = i
+            out = max(out, i-l+1)
+        return out
+
+
+# 3. Longest Substring Without Repeating Characters (https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) - Medium - 2026-11-09 - 13m 32s [pop-window]
 class Solution:
     '''
     Time Complexity: O(n)
